@@ -39,6 +39,28 @@
                 </tr>
              <% } %>
             </tbody>
-          </table>  
+        </table> 
+        <div style="width:300px; margin-left:20px">
+          <h1>Create user</h1>
+          <form action="/create-new-user" method="POST">
+            <div style="flex-direction: column">
+              <label>first name</label>
+              <input type="text" name="firstName"/>
+            </div>
+            <div>
+              <label>Last name</label>
+              <input type="text" name="lastName"/>
+            </div>
+            <div>
+              <label>email name</label>
+              <input type="email" name="email"/>
+            </div>
+            <div>
+              <label>nuber phone</label>
+              <input type="tel" name="numberPhone"/>
+            </div>
+            <button type="submit">submit</button>
+          </form>
+        </div>
     </body>
 </html>

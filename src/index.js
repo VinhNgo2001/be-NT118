@@ -7,7 +7,9 @@ import connection from "./configs/connectDB"
 
 const app = express()
 const port = process.env.PORT
-
+//config data from client to sever
+app.use(express.urlencoded({extended:true}))
+app.use(express.json())
 //
 configViewEngine(app)
 //
