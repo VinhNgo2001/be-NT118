@@ -1,22 +1,17 @@
-import connection from "../configs/connectDB"
+import pool from "../configs/connectDB"
 
-let getHomePage =(req,res)=>{
-    let data=[]
-    //xu ly logic
-    connection.query(
-        'SELECT * FROM `users`',
-        function(err, results, fields) {
-          console.log('>>> check mysql')
-          console.log(results); // results contains rows returned by server
-          // console.log(fields); // fields contains extra meta data about results, if available
-            data= results
-            return res.render('index.ejs',{dataUser:data})
-        }
-      );
+let getHomePage = async(req,res)=>{
+    const results = await pool.query("select * from users")
+    return res.render('index.ejs',{dataUser:results[0]})
+ 
+}
+let getDetailsUser = async(req,res)=>{
+  let id = req.params.id
+  const results = await pool.query("select * from users where id=?",[id])
+  return res.send( JSON.stringify(results[0]))
 
-    
 }
 
 module.exports={
-    getHomePage
+    getHomePage,getDetailsUser
 }
