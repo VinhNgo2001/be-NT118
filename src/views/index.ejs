@@ -10,24 +10,35 @@
             <a href="#contact">Contact</a>
             <a href="#about">About</a>
         </div>
+        <%= dataUser %>
         <h1>List user: </h1>
         <table style="width:100%"  id="customers">
-            <tr>
-              <td>id</td>
-              <td>Frist name</td>
-              <td>Last name</td>
-              <td>email</td>
-              <td>Number Phone</td>
-            </tr>
-            <tr>
-              <td>16</td>
-              <td>14</td>
-              <td>10</td>
-              <td>10</td>
-              <td>10</td>
-            </tr>
-          </table>
-
-        <%= dataUser %>
+            <thead>
+              <tr>
+                <td>id</td>
+                <td>Frist name</td>
+                <td>Last name</td>
+                <td>email</td>
+                <td>Number Phone</td>
+                <td>Action</td>
+              </tr>
+            </thead>
+            <tbody>
+              <% for(var i=0; i < dataUser.length; i++) { %>
+                <tr>
+                  <td><%= dataUser[i].id %></td>
+                  <td><%= dataUser[i].firstName %></td>
+                  <td><%= dataUser[i].lastName %></td>
+                  <td><%= dataUser[i].email %></td>
+                  <td><%= dataUser[i].numberPhone %></td>
+                  <td>
+                    <a href='/details/user/<%= dataUser[i].id %>' target="_blank">detail</a>
+                    <button>edit</button>
+                    <button>delete</button>
+                  </td>
+                </tr>
+             <% } %>
+            </tbody>
+          </table>  
     </body>
 </html>

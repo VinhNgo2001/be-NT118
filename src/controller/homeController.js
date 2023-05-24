@@ -10,7 +10,7 @@ let getHomePage =(req,res)=>{
           console.log(results); // results contains rows returned by server
           // console.log(fields); // fields contains extra meta data about results, if available
             data= results
-            return res.render('index.ejs',{dataUser:JSON.stringify(data)})
+            return res.render('index.ejs',{dataUser:data})
         }
       );
 
