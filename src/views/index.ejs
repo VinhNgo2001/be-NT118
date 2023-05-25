@@ -10,8 +10,7 @@
             <a href="#contact">Contact</a>
             <a href="#about">About</a>
         </div>
-        <%= dataUser %>
-        <h1>List user: </h1>
+        <h1>List user </h1>
         <table style="width:100%"  id="customers">
             <thead>
               <tr>
@@ -31,10 +30,19 @@
                   <td><%= dataUser[i].lastName %></td>
                   <td><%= dataUser[i].email %></td>
                   <td><%= dataUser[i].numberPhone %></td>
-                  <td>
-                    <a href='/details/user/<%= dataUser[i].id %>' target="_blank">detail</a>
-                    <button>edit</button>
-                    <button>delete</button>
+                  <td >
+                    <div >
+                      <a href='/details/user/<%= dataUser[i].id %>' target="_blank" >detail</a>
+                    </div>
+                    <div >
+                      <a href="/edit-user/<%= dataUser[i].id %>"target="_blank">edit</a>
+                    </div>
+                    <div >
+                      <form action="/delete-user" method="POST" >
+                        <input type="text" value="<%= dataUser[i].id %>" hidden name="idUser"/>
+                        <button type="submit">delete</button>
+                      </form>
+                    </div>
                   </td>
                 </tr>
              <% } %>

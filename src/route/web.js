@@ -8,9 +8,10 @@ const initWebRoute =(app)=>{
     router.get('/',homeController.getHomePage)
     router.get('/details/user/:id',homeController.getDetailsUser)
     router.post('/create-new-user',homeController.postNewUser)
-    router.get('/about',(req,res)=>{
-        res.send('wibuu cuc manh')
-    })
+    router.post('/delete-user',homeController.postDeleteUser)
+    router.get('/edit-user/:id',homeController.getEditUser)
+    router.post('/update-user/:id',homeController.postUpdateUser)
+   
     return app.use('/',router)
 }
 

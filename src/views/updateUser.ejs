@@ -1,0 +1,49 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <h1>edit User</h1>
+    <%= JSON.stringify(dataUser) %>
+    
+    <form action="/update-user/<%= dataUser.id %>" method="POST">
+        <div>
+          <div>
+            <label>first name</label>
+          </div>
+          <div>
+            <input name="firstName" value='<%= dataUser.firstName %>'/>
+           
+          </div>
+        </div>
+        <div>
+          <div>
+            <label>Last name</label>
+          </div>
+          <input type="text" name="lastName" value='<%= dataUser.lastName %>'/>
+        </div>
+        <div>
+          <div>
+            <label>email name</label>
+          </div>
+          <div>
+            <input type="email" name="email" value='<%= dataUser.email %>'/>
+          </div>
+        </div>
+        <div>
+          <div>
+            <label>nuber phone</label>
+          </div>
+          <div>
+            <input type="tel" name="numberPhone"value='<%= dataUser.numberPhone %>'/>
+          </div>
+        </div>
+        <input name="id" value='<%= dataUser.id %>' hidden/>
+        <button type="submit">save</button>
+      </form>     
+</body>
+</html>
