@@ -39,6 +39,11 @@ let postUpdateUser  =async(req,res)=>{
   console.log('update user id: ',req.body)
   return res.redirect('/')
 }
+let upLoad = (req,res ) =>{
+  return res.render('upLoad.ejs')
+}
+
 module.exports={
-    getHomePage,getDetailsUser,postNewUser,postDeleteUser,getEditUser,postUpdateUser
+    getHomePage,getDetailsUser,postNewUser,postDeleteUser,getEditUser,
+    postUpdateUser,upLoad
 }

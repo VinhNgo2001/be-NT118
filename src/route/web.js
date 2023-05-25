@@ -11,6 +11,7 @@ const initWebRoute =(app)=>{
     router.post('/delete-user',homeController.postDeleteUser)
     router.get('/edit-user/:id',homeController.getEditUser)
     router.post('/update-user/:id',homeController.postUpdateUser)
+    router.get('/upload',homeController.upLoad)
    
     return app.use('/',router)
 }
