@@ -17,7 +17,7 @@ app.use(express.json())
 configViewEngine(app)
 //router
 initWebRoute(app)
-//api
+//api http://localhost:5000/api/v1
 initApi(app)
 
 app.listen(port, () => {
