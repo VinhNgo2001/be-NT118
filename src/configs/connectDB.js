@@ -9,5 +9,6 @@ const  pool = mysql.createPool({
   database: 'nodejsnew'
 });
 
+
 export default pool;
 

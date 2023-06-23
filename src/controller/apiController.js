@@ -32,7 +32,7 @@ let logInUser = async(req,res)=>{
     let {numberPhone ,passWord}=req.body
     console.log('check:  ',req.body)
     if (!numberPhone|| !passWord){
-        return res.status(200).json({
+        return res.status(400).json({
             message:'missing required parmas'
         })
     }

@@ -3,8 +3,9 @@ import multer from "multer"
 
 let getHomePage = async(req,res)=>{
     const results = await pool.query("select * from users")
+    const results2 = await pool.query("select * from films")
     // console.log(">>> home:",results[0])
-    return res.render('index.ejs',{dataUser:results[0]})
+    return res.render('index.ejs',{dataUser:results[0],dataFilms:results2[0]})
  
 }
 let getDetailsUser = async(req,res)=>{
@@ -56,6 +57,12 @@ let handleUploadFile = async (req, res) => {
       res.send(`You have uploaded this image: <hr/><img src="/image/${req.file.filename}" width="500"><hr /><a href="/upload">Upload another image</a>`);
  
 }
+/// films
+// let getFilms =async(req,res)=>{
+//   const results = await pool.query("select * from films")
+    
+//   return res.render('index.ejs',{dataFilms:results[0]})
+// }
 
 
 module.exports={

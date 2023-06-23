@@ -3,11 +3,11 @@
     <head>
         <link rel="stylesheet" href="/css/style.css">
     </head>
-    <body>
+    <body style="padding-bottom: 50px;padding-left: 20px;">
         <div class="topnav">
             <a class="active" href="/">Home</a>
             <a href="/upload">Up load</a>
-            <a href="#contact">Contact</a>
+            <a href="#contact">Films</a>
             <a href="#about">About</a>
         </div>
         <h1>List user </h1>
@@ -69,6 +69,48 @@
             </div>
             <button type="submit">submit</button>
           </form>
+        </div>
+        <div>
+          <h1>List Films</h1>
+          <table style="width:100%"  id="customers">
+            <thead>
+              <tr>
+                <td>id</td>
+                <td>Film name</td>
+                <td>Tags</td>
+                <td>Description</td>
+                <td>link</td>
+                <td>imageFilm</td>
+                <td>Action</td>
+              </tr>
+            </thead>
+            <tbody>
+              <% for(var i=0; i < dataFilms.length; i++) { %>
+                <tr>
+                  <td><%= dataFilms[i].id %></td>
+                  <td><%= dataFilms[i].firstName %></td>
+                  <td><%= dataFilms[i].passWord %></td>
+                  <td><%= dataFilms[i].email %></td>
+                  <td><%= dataFilms[i].numberPhone %></td>
+                  <td></td>
+                  <td >
+                    <div >
+                      <a href='/details/user/<%= dataUser[i].id %>' target="_blank" >detail</a>
+                    </div>
+                    <div >
+                      <a href="/edit-user/<%= dataUser[i].id %>"target="_blank">edit</a>
+                    </div>
+                    <div >
+                      <form action="/delete-user" method="POST" >
+                        <input type="text" value="<%= dataUser[i].id %>" hidden name="idUser"/>
+                        <button type="submit">delete</button>
+                      </form>
+                    </div>
+                  </td>
+                </tr>
+             <% } %>
+            </tbody>
+        </table> 
         </div>
     </body>
 </html>
