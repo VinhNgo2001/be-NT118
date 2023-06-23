@@ -4,6 +4,7 @@ import multer from "multer"
 let getHomePage = async(req,res)=>{
     const results = await pool.query("select * from users")
     const results2 = await pool.query("select * from films")
+    console.log('data films: ',results2[0])
     // console.log(">>> home:",results[0])
     return res.render('index.ejs',{dataUser:results[0],dataFilms:results2[0]})
  
@@ -58,14 +59,15 @@ let handleUploadFile = async (req, res) => {
  
 }
 /// films
-// let getFilms =async(req,res)=>{
-//   const results = await pool.query("select * from films")
-    
-//   return res.render('index.ejs',{dataFilms:results[0]})
-// }
+let creatNewFilm = async (req, res)=>{
+  let {filmName,tag,description,linkYT}=req.body
+  // console.log('check log', req.body)
+  await pool.query("insert into films(filmName,tag,description,linkYT) values(?,?,?,?)",[filmName,tag,description,linkYT])
+  return res.redirect('/')
+}
 
 
 module.exports={
     getHomePage,getDetailsUser,postNewUser,postDeleteUser,getEditUser,
-    postUpdateUser,getUpLoadPage,handleUploadFile
+    postUpdateUser,getUpLoadPage,handleUploadFile,creatNewFilm
 }

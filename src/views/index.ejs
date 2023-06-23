@@ -88,29 +88,42 @@
               <% for(var i=0; i < dataFilms.length; i++) { %>
                 <tr>
                   <td><%= dataFilms[i].id %></td>
-                  <td><%= dataFilms[i].firstName %></td>
-                  <td><%= dataFilms[i].passWord %></td>
-                  <td><%= dataFilms[i].email %></td>
-                  <td><%= dataFilms[i].numberPhone %></td>
+                  <td><%= dataFilms[i].filmName %></td>
+                  <td><%= dataFilms[i].tag %></td>
+                  <td><%= dataFilms[i].description %></td>
+                  
+                  <td><%= dataFilms[i].linkYT %></td>
+                  
                   <td></td>
                   <td >
-                    <div >
-                      <a href='/details/user/<%= dataUser[i].id %>' target="_blank" >detail</a>
-                    </div>
-                    <div >
-                      <a href="/edit-user/<%= dataUser[i].id %>"target="_blank">edit</a>
-                    </div>
-                    <div >
-                      <form action="/delete-user" method="POST" >
-                        <input type="text" value="<%= dataUser[i].id %>" hidden name="idUser"/>
-                        <button type="submit">delete</button>
-                      </form>
-                    </div>
+                    
                   </td>
                 </tr>
              <% } %>
             </tbody>
         </table> 
+        </div>
+        <div style="width:300px; margin-left:20px">
+          <h1>Create Films</h1>
+          <form action="/create-new-film" method="POST">
+            <div style="flex-direction: column">
+              <label>Film name</label>
+              <input type="text" name="filmName"/>
+            </div>
+            <div>
+              <label>Tags</label>
+              <input type="text" name="tag"/>
+            </div>
+            <div>
+              <label>description</label>
+              <input type="text" name="description"/>
+            </div>
+            <div>
+              <label>link Youtube</label>
+              <input type="text" name="linkYT"/>
+            </div>
+            <button type="submit">submit</button>
+          </form>
         </div>
     </body>
 </html>
