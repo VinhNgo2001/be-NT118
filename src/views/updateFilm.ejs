@@ -10,37 +10,47 @@
     <h1>edit</h1>
     <%= JSON.stringify(dataUser) %>
     
-    <form action="/update-user/<%= dataUser.id %>" method="POST">
+    <form action="/update-film/<%= dataUser.id %>" method="POST">
         <div>
           <div>
-            <label>first name</label>
+            <label>Film name</label>
           </div>
           <div>
-            <input name="firstName" value='<%= dataUser.firstName %>'/>
+            <input name="filmName" value='<%= dataUser.filmName %>'/>
            
           </div>
         </div>
         <div>
           <div>
-            <label>Last name</label>
+            <label>Tags</label>
           </div>
-          <input type="text" name="lastName" value='<%= dataUser.lastName %>'/>
+          <input type="text" name="tag" value='<%= dataUser.tag %>'/>
         </div>
         <div>
           <div>
-            <label>email name</label>
+            <label>description</label>
           </div>
           <div>
-            <input type="email" name="email" value='<%= dataUser.email %>'/>
+            <input type="text" name="description" value='<%= dataUser.description %>'/>
           </div>
         </div>
         <div>
           <div>
-            <label>nuber phone</label>
+            <label>nLink Yotube</label>
           </div>
           <div>
-            <input type="tel" name="numberPhone"value='<%= dataUser.numberPhone %>'/>
+            <input type="text" name="linkYT"value='<%= dataUser.linkYT %>'/>
           </div>
+          
+        </div>
+        <div>
+          <div>
+            <label>link image</label>
+          </div>
+          <div>
+            <input type="text" name="linkImage"value='<%= dataUser.linkImage %>'/>
+          </div>
+          
         </div>
         <input name="id" value='<%= dataUser.id %>' hidden/>
         <button type="submit">save</button>

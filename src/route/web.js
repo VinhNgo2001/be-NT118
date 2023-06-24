@@ -40,7 +40,11 @@ const initWebRoute =(app)=>{
     router.get('/upload',homeController.getUpLoadPage)
     router.post('/upload-profile-pic', upload.single('profile_pic'), homeController.handleUploadFile)
     // router.get('/films',homeController.getFilms)
-    router.post('/create-new-film',homeController.creatNewFilm)    
+    router.post('/create-new-film',homeController.creatNewFilm)
+    router.get('/edit-film/:id',homeController.getEditFilm)
+    router.post('/update-film/:id',homeController.postUpdateFilm)
+    router.post('/delete-film',homeController.postDeleteFilm)
+
    
     return app.use('/',router)
 }

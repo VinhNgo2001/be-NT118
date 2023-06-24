@@ -66,6 +66,15 @@ let updateUser =async(req,res)=>{
         message:'oke con de'
     })
 }
+// films
+let getAllFilms = async(req,res)=>{
+    const results = await pool.query("select * from films ")
+    return res.status(200).json({
+        message:'get data films succees',
+        data:results[0]
+    })
+}
+
 module.exports ={
-    getAllUsers ,createNewUser,updateUser,logInUser,
+    getAllUsers ,createNewUser,updateUser,logInUser,getAllFilms
 }

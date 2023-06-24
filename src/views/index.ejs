@@ -94,9 +94,15 @@
                   
                   <td><%= dataFilms[i].linkYT %></td>
                   
-                  <td></td>
+                  <td><%= dataFilms[i].linkImage %></td>
                   <td >
-                    
+                    <a href="/edit-film/<%= dataFilms[i].id %>"target="_blank">edit</a>
+                    <div >
+                      <!-- <form action="/delete-film" method="POST" >
+                        <input type="text" value="<%= dataFilms[i].id %>" hidden name="idFilm"/>
+                        <button type="submit">delete</button>
+                      </form> -->
+                    </div>
                   </td>
                 </tr>
              <% } %>
@@ -121,9 +127,13 @@
             <div>
               <label>link Youtube</label>
               <input type="text" name="linkYT"/>
+            </div><div>
+              <label>link image</label>
+              <input type="text" name="linkImage"/>
             </div>
             <button type="submit">submit</button>
           </form>
         </div>
-    </body>
+        <h1>ảnh demo</h1>
+        <img style="width:400px"src="https://res.cloudinary.com/dsecbeybb/image/upload/v1687603028/be-NT118/films/attack_on_titan_l7nxmk.jpg">
 </html>

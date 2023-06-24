@@ -65,9 +65,32 @@ let creatNewFilm = async (req, res)=>{
   await pool.query("insert into films(filmName,tag,description,linkYT) values(?,?,?,?)",[filmName,tag,description,linkYT])
   return res.redirect('/')
 }
+let getEditFilm = async(req,res)=>{
+  let id = req.params.id
+  let [results] = await pool.query("select * from films where id=?",[id])
+  console.log(">>> edit film",results)
+  return res.render('updateFilm.ejs',{dataUser:results[0]})
+  // return res.send('a')
+}
+let postUpdateFilm  =async(req,res)=>{
+  let {filmName,tag,description,linkYT,linkImage,id}=req.body
+  await pool.query("update films set filmName =?, tag=?,description=?,linkYT=?, linkImage=? where id=?",[filmName,tag,description,linkYT,linkImage,id])
+  console.log('update film id: ',req.body)
+  return res.redirect('/')
+}
+let postDeleteFilm  =async(req,res)=>{
+  let id=req.body.idFilm
+  
+  
+  await pool.query("DELETE FROM films WHERE id=?",[id])
+  console.log('delete film id: ',id )
+  return res.redirect('/')
+}
+
 
 
 module.exports={
     getHomePage,getDetailsUser,postNewUser,postDeleteUser,getEditUser,
-    postUpdateUser,getUpLoadPage,handleUploadFile,creatNewFilm
+    postUpdateUser,getUpLoadPage,handleUploadFile,creatNewFilm,getEditFilm,
+    postUpdateFilm,postDeleteFilm
 }
