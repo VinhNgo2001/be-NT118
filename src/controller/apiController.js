@@ -75,6 +75,39 @@ let getAllFilms = async(req,res)=>{
     })
 }
 
+//
+let addFavorite = async(req,res)=>{
+    let {userId,filmId}=req.body
+    const check=await pool.query("SELECT * FROM favorites WHERE userId = ? AND filmId = ?",[userId,filmId])
+    console.log('check ton tai:',check[0])
+    if (check[0].length>0){
+        return res.status(400).json({
+            message:'bo phim da ton tai trong danh sach'
+        })
+    }
+
+    await pool.query("insert into favorites (userId,filmId) values(?,?)",[userId,filmId])
+    
+    return res.status(200).json({
+        message:'oke'
+    })
+}
+let getFavorite =async(req,res)=>{
+    let {userId}= req.body
+    
+    console.log('check log id: ',req.body)
+    const results= await pool.query(
+        "select m.* from users u join favorites f on u.id = f.userId join films m on f.filmId= m.id where u.id=?",[userId] )
+        console.log('check log: ',results)
+    return res.status(200).json({
+        message:'oke ',
+        data:results[0]   
+    })
+
+}
+
 module.exports ={
-    getAllUsers ,createNewUser,updateUser,logInUser,getAllFilms
+    getAllUsers ,createNewUser,updateUser,logInUser,getAllFilms,
+    addFavorite,getFavorite
+
 }
