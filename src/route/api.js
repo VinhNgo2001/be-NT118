@@ -11,6 +11,7 @@ const initApi =(app)=>{
     router.put('/update-user/:id',ApiController.updateUser)
     //film
     router.get('/films/',ApiController.getAllFilms)
+    router.post('/films/search',ApiController.getSearchFilms)
     //favorite
     router.post('/add-favorite',ApiController.addFavorite)
     router.post('/get-favortite',ApiController.getFavorite)

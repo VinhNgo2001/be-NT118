@@ -75,7 +75,24 @@ let getAllFilms = async(req,res)=>{
     })
 }
 
-//
+let getSearchFilms =async(req,res)=>{
+    const searchText = req.body['searchText'];
+    console.log('check search text:',searchText)
+    if(searchText==''){
+        return res.status(200).json({
+            message:'missing text'
+        })
+    }
+    const results = await pool.query('select * from films where filmName like ? ',['%'+searchText+'%'])
+
+    console.log('check ket qua tim kiem',results[0])
+
+    return res.status(200).json({
+        message: 'ket qua tim kiem',
+        data: results[0]
+    })
+}
+//favorite film
 let addFavorite = async(req,res)=>{
     let data=req.body
     let userId=data['0']
@@ -123,6 +140,6 @@ let getFavorite =async(req,res)=>{
 
 module.exports ={
     getAllUsers ,createNewUser,updateUser,logInUser,getAllFilms,
-    addFavorite,getFavorite
+    addFavorite,getFavorite,getSearchFilms,
 
 }
