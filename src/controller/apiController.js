@@ -85,7 +85,7 @@ let addFavorite = async(req,res)=>{
     const check=await pool.query("SELECT * FROM favorites WHERE userId = ? AND filmId = ?",[userId,filmId])
     // console.log('check ton tai:',check[0])
     if (check[0].length>0){
-        return res.status(400).json({
+        return res.status(200).json({
             message:'bo phim da ton tai trong danh sach'
         })
     }
