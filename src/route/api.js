@@ -9,6 +9,7 @@ const initApi =(app)=>{
     router.post('/create-user',ApiController.createNewUser)
     router.post('/log-in',ApiController.logInUser)
     router.put('/update-user',ApiController.updateUser)
+    router.put('/pass-word',ApiController.updatePW)
     //film
     router.get('/films/',ApiController.getAllFilms)
     // router.get('/films/:id',ApiController.getIdFilms)

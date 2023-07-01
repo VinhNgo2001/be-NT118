@@ -32,7 +32,8 @@ let createNewUser = async(req,res)=>{
 
     await pool.query("insert into users(firstName,numberPhone,passWord) values(?,?,?)",[firstName,numberPhone,passWord])
     return res.status(200).json({
-        message1:'Sign Up success'
+        message1:'Notification',
+        message2:'Sign Up success'
     })
     
 
@@ -73,6 +74,27 @@ let updateUser =async(req,res)=>{
         message:'oke con de'
     })
 }
+let updatePW =async (req,res)=>{
+    console.log(req.body)
+    const x=req.body
+    console.log(x.newPW1)
+    if(!x.passWord || !x.newPW){
+        return res.status(200).json({
+            message:'miss password'
+        })
+    }
+    if(x.newPW !== x.newPW1)
+    {
+        return res.status(200).json({
+            message:'re-enter incorrect password'
+        })
+    }
+    await pool.query('update users set passWord=? where id=?',[x.newPW,x.id])
+    return res.status(200).json({
+        message:'change password success'
+    })
+    
+}
 // films
 let getAllFilms = async(req,res)=>{
     const results = await pool.query("select * from films ")
@@ -110,7 +132,7 @@ let addFavorite = async(req,res)=>{
     // console.log('check ton tai:',check[0])
     if (check[0].length>0){
         return res.status(200).json({
-            message:'bo phim da ton tai trong danh sach'
+            message:'the movie already exists'
         })
     }
     else{
@@ -120,7 +142,7 @@ let addFavorite = async(req,res)=>{
     await pool.query("insert into favorites (userId,filmId) values(?,?)",[userId,filmId])
     console.log('them thanh cong')
     return res.status(200).json({
-        message:'oke'
+        message:'Added to favorites'
         
     })
 }
@@ -147,6 +169,6 @@ let getFavorite =async(req,res)=>{
 
 module.exports ={
     getAllUsers ,createNewUser,updateUser,logInUser,getAllFilms,
-    addFavorite,getFavorite,getSearchFilms,
+    addFavorite,getFavorite,getSearchFilms,updatePW
 
 }
