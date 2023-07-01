@@ -14,16 +14,25 @@ let getAllUsers = async(req,res)=>{
 }
 let createNewUser = async(req,res)=>{
     let {firstName,passWord,numberPhone}=req.body
+
     if (!firstName ||!passWord|| !numberPhone){
         return res.status(200).json({
-            message:'missing required parmas'
+            message:'missing required parmas',
+            message1:'Registration failed',
+            message2:"Please complete all information"
+        })
+    }
+    const resultCheck=await pool.query('select * from users where numberPhone=?',[numberPhone])
+    if(resultCheck[0].length    >0){
+        return res.status(200).json({
+            message1:'Registration failed',
+            message2:"The phone number has been registered!"
         })
     }
 
-
     await pool.query("insert into users(firstName,numberPhone,passWord) values(?,?,?)",[firstName,numberPhone,passWord])
     return res.status(200).json({
-        message:'oke'
+        message1:'Sign Up success'
     })
     
 
@@ -33,7 +42,8 @@ let logInUser = async(req,res)=>{
     console.log('check:  ',req.body)
     if (!numberPhone|| !passWord){
         return res.status(400).json({
-            message:'missing required parmas'
+            message:'good',
+
         })
     }
 
@@ -53,14 +63,11 @@ let logInUser = async(req,res)=>{
 
 }
 let updateUser =async(req,res)=>{
-    let {firstName,lastName,email,numberPhone,id}=req.body
-    if (!firstName || !lastName || !email || !numberPhone || !id){
-        return res.status(200).json({
-            message:'missing required parmas'
-        })
-    }
+    let {firstName,email,numberPhone,id}=req.body
+    console.log('check req up date user', req.body)
+   
 
-    await pool.query("update users set firstName =?, lastName=?,email=?,numberPhone=? where id=?",[firstName,lastName,email,numberPhone,id])
+    await pool.query("update users set firstName =?,email=?,numberPhone=? where id=?",[firstName,email,numberPhone,id])
 
     return res.status(200).json({
         message:'oke con de'

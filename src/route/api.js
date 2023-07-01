@@ -8,9 +8,10 @@ const initApi =(app)=>{
     router.get('/users/:id',ApiController.getAllUsers)
     router.post('/create-user',ApiController.createNewUser)
     router.post('/log-in',ApiController.logInUser)
-    router.put('/update-user/:id',ApiController.updateUser)
+    router.put('/update-user',ApiController.updateUser)
     //film
     router.get('/films/',ApiController.getAllFilms)
+    // router.get('/films/:id',ApiController.getIdFilms)
     router.post('/films/search',ApiController.getSearchFilms)
     //favorite
     router.post('/add-favorite',ApiController.addFavorite)
